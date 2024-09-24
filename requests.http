@@ -1,0 +1,30 @@
+GET http://127.0.0.1:4000/mascotas/buscar HTTP/1.1
+
+###
+POST http://127.0.0.1:4000/mascotas/crear HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Bongo",
+    "species": "Perro",
+    "breed": "Mestizo",
+    "age": 7,
+    "description": "Color Blanco"
+    
+}
+
+###
+PUT http://127.0.0.1:4000/mascotas/actualizar/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Toni",
+    "species": "Gato",
+    "breed": "Ruso",
+    "age": 5,
+    "description": "Color Gris"
+    
+}
+
+###
+DELETE http://127.0.0.1:4000/mascotas/borrar/2 HTTP/1.1
