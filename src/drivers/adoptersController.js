@@ -1,11 +1,11 @@
-import { pets } from "../models/petsModel.js";
+import { adopters } from "../models/adoptersModel.js";
 
-//Funcion Crear Mascotas
+//Funcion Crear Adoptantes
 
 const crear = (req, res) => {
 
     //validar
-    if (!req.body.name) {
+    if (!req.body.first_name) {
         res.status(400).send({
             mensaje: "El nombre no puede estar vacio."
         });
@@ -13,26 +13,25 @@ const crear = (req, res) => {
     }
 
     const dataset = {
-        name: req.body.name,
-        species: req.body.species,
-        breed: req.body.breed,
-        age: req.body.age,
-        description: req.body.description
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        phone: req.body.phone,
 
     }
 
     //usar sequelize para crear el recurso en la base de datos
 
-    pets.create(dataset).then((resultado) => {
+    adopters.create(dataset).then((resultado) => {
         res.status(200).json({
-            mensaje: "Registro de Mascota Creado con Exito"
+            mensaje: "Registro de Adoptante Creado con Exito"
 
         });
 
 
     }).catch((err) => {
         res.status(500).json({
-            mensaje: `Registro de Mascota No Creado ::: ${err}`
+            mensaje: `Registro de Adoptante No Creado ::: ${err}`
         });
 
     });
@@ -40,9 +39,9 @@ const crear = (req, res) => {
 
 }
 
-//Funcion Buscar Mascotas
+//Funcion Buscar Adoptantes
 const buscar = (req, res) => {
-    pets.findAll().then((resultado) => {
+    adopters.findAll().then((resultado) => {
         res.status(200).json(resultado);
 
     }).catch((err) => {
@@ -58,7 +57,7 @@ const buscar = (req, res) => {
 
 
 
-//Funcion BuscarId Mascotas
+//Funcion BuscarId Adoptantes
 const buscarID = (req, res) => {
     const id = req.params.id;
     if (id == null) {
@@ -68,7 +67,7 @@ const buscarID = (req, res) => {
         return;
     } else {
 
-        pets.findByPk(id).then((resultado) => {
+        adopters.findByPk(id).then((resultado) => {
             res.status(200).json(resultado);
 
         }).catch((err) => {
@@ -87,40 +86,40 @@ const buscarID = (req, res) => {
 
 
 
-
-//Funcion Actualizar Mascotas
+//Funcion Actualizar Adoptantes
 
 const actualizar = (req, res) => {
     const id = req.params.id
-    if (!req.body.name && !req.body.species) {
+    if (!req.body.first_name && !req.body.last_name && !req.body.email) {
         res.status(400).json({
             mensaje: "No se encontraron Datos para Actualizar."
         });
         return;
     } else {
-        const name = req.body.name;
-        const species = req.body.species;
-        const breed = req.body.breed;
-        const age = req.body.age;
-        const description = req.body.description;
-        pets.update({ name, species, breed, age, description },
-            { where: { id } }).then((resultado) => {
-            res.status(200).json({
-                tipo: 'success',
-                mensaje: "Registro actualizado."
-            });
-        }).catch((err) => {
-            res.status(500).json({
-                tipo: 'error',
-                mensaje: `Error al actualizar registro. ::: ${err}`
-            });
+        const first_name = req.body.first_name;
+        const last_name = req.body.last_name;
+        const email = req.body.email;
+        const phone = req.body.phone;
 
-        });
+
+        adopters.update({ first_name, last_name, email, phone},
+            { where: { id } }).then((resultado) => {
+                res.status(200).json({
+                    tipo: 'success',
+                    mensaje: "Registro actualizado."
+                });
+            }).catch((err) => {
+                res.status(500).json({
+                    tipo: 'error',
+                    mensaje: `Error al actualizar registro. ::: ${err}`
+                });
+
+            });
     }
 
 }
 
-// Función Borrar mascota
+// Función Borrar Adoptantes
 const borrar = (req, res) => {
     const id = req.params.id;
 
@@ -131,24 +130,24 @@ const borrar = (req, res) => {
         return;
     }
 
-    pets.destroy({ where: { id } })
+    adopters.destroy({ where: { id } })
         .then((resultado) => {
             if (resultado === 1) {
                 res.status(200).json({
                     tipo: 'success',
-                    mensaje: "Registro de mascota eliminado con éxito."
+                    mensaje: "Registro de Adoptante eliminado con éxito."
                 });
             } else {
                 res.status(404).json({
                     tipo: 'error',
-                    mensaje: "Mascota no encontrada."
+                    mensaje: "Adoptante no encontrado."
                 });
             }
         })
         .catch((err) => {
             res.status(500).json({
                 tipo: 'error',
-                mensaje: `Error al eliminar registro. ::: ${err}`
+                mensaje: `Error al Eliminar registro. ::: ${err}`
             });
         });
 };

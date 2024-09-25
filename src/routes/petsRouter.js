@@ -15,7 +15,7 @@ routerPets.get('/buscar', (req,res) =>{
    buscar(req,res);
 })
 
-routerPets.get('/buscarId', (req,res) =>{
+routerPets.get('/buscarId/:id', (req,res) =>{
     buscarID(req,res);
  })
 
