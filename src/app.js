@@ -1,6 +1,7 @@
 import express from "express";
 import { routerPets } from "./routes/petsRouter.js";
 import { routerAdopters } from "./routes/adoptersRouter.js";
+import { routerAdoptionRequests } from "./routes/adoptionRequestsRouter.js";
 import {db} from "./database/conexion.js";
 
 //Crear instancia de Express
@@ -27,6 +28,9 @@ app.use("/mascotas",routerPets);
 
 //Llamar rutas de Adoptantes
 app.use("/adoptantes",routerAdopters);
+
+//Llamar rutas de Solicitud de Adopcion
+app.use("/solicitudes",routerAdoptionRequests);
 
 //Puerto de Servidor
 const PORT=4000;
