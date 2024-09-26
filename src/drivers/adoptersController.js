@@ -17,6 +17,9 @@ const crear = (req, res) => {
         last_name: req.body.last_name,
         email: req.body.email,
         phone: req.body.phone,
+        citizenship_card: req.body.citizenship_card,
+        address: req.body.address,
+        city: req.body.city
 
     }
 
@@ -100,9 +103,12 @@ const actualizar = (req, res) => {
         const last_name = req.body.last_name;
         const email = req.body.email;
         const phone = req.body.phone;
+        const citizenship_card= req.body.citizenship_card;
+        const address= req.body.address;
+        const city= req.body.city;
 
 
-        adopters.update({ first_name, last_name, email, phone},
+        adopters.update({ first_name, last_name, email, phone, citizenship_card, address, city},
             { where: { id } }).then((resultado) => {
                 res.status(200).json({
                     tipo: 'success',

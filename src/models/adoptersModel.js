@@ -24,6 +24,18 @@ const adopters = db.define("adopters", {
   phone: {
     type: Sequelize.STRING,
     allowNull: true
+  },
+  citizenship_card: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+  address: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+  city: {
+    type: Sequelize.STRING,
+    allowNull: true
   }
 }, {
   timestamps: false  // Deshabilita 'createdAt' y 'updatedAt'
