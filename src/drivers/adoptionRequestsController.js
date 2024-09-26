@@ -3,42 +3,61 @@ import { pets } from "../models/petsModel.js"; // Importa también el modelo de 
 import { adopters } from "../models/adoptersModel.js"; // Importa el modelo de adoptantes
 
 
-const crear = (req, res) => {
+const crear = async (req, res) => {
+    try {
+        // Validar que pet_id y adopter_id existan en el cuerpo de la solicitud
+        if (!req.body.pet_id) {
+            return res.status(400).send({
+                mensaje: "La mascota debe existir."
+            });
+        }
 
-    //validar
-    if (!req.body.pet_id) {
-        res.status(400).send({
-            mensaje: "La mascota debe existir."
+        if (!req.body.adopter_id) {
+            return res.status(400).send({
+                mensaje: "El adoptante debe existir."
+            });
+        }
+
+        // Buscar el nombre de la mascota en la tabla pets
+        const pet = await pets.findOne({ where: { id: req.body.pet_id } });
+        if (!pet) {
+            return res.status(404).send({
+                mensaje: "La mascota no existe en la base de datos."
+            });
+        }
+
+        // Buscar el nombre del adoptante en la tabla adopters
+        const adopter = await adopters.findOne({ where: { id: req.body.adopter_id } });
+        if (!adopter) {
+            return res.status(404).send({
+                mensaje: "El adoptante no existe en la base de datos."
+            });
+        }
+
+        // Crear el objeto dataset con los nombres obtenidos de la base de datos
+        const dataset = {
+            pet_id: req.body.pet_id,
+            adopter_id: req.body.adopter_id,
+            request_date: req.body.request_date || new Date(),  // Usa la fecha actual si no se proporciona
+            status: req.body.status || 'Pending',  // Estado por defecto
+            name_pet: pet.name,  // Obtener el nombre de la mascota desde la base de datos
+            name_adopter: adopter.first_name + ' ' + adopter.last_name,  // Obtener el nombre completo del adoptante
+            comments: req.body.comments || ''  // Si hay comentarios, los agrega, si no, los deja vacíos
+        };
+
+        // Usar Sequelize para crear el recurso en la base de datos
+        const resultado = await adoptionRequests.create(dataset);
+        return res.status(201).json({
+            mensaje: "Registro de Solicitud de Adopción creado con éxito",
+            data: resultado
         });
-        return;
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: `Error al crear la Solicitud de Adopción: ${err.message}`
+        });
     }
+};
 
-    const dataset = {
-        pet_id: req.body.pet_id,
-        adopter_id: req.body.adopter_id,
-        request_date: req.body.request_date || new Date(),  // Usa la fecha actual si no se proporciona
-        status: req.body.status || 'Pending'
-
-    }
-
-    //usar sequelize para crear el recurso en la base de datos
-
-    adoptionRequests.create(dataset).then((resultado) => {
-        res.status(200).json({
-            mensaje: "Registro de Solicitud de Adopción Creado con Exito"
-
-        });
-
-
-    }).catch((err) => {
-        res.status(500).json({
-            mensaje: `Registro de Solicitud de Adopción No Creado ::: ${err}`
-        });
-
-    });
-
-
-}
 
 
 
@@ -103,9 +122,12 @@ const actualizar = (req, res) => {
         const adopter_id = req.body.adopter_id;
         const request_date = req.body.request_date;
         const status = req.body.status;
+        const name_pet = req.body.name_pet;
+        const name_adopter = req.body.name_adopter;
+        const comments = req.body.comments;
 
 
-        adoptionRequests.update({ pet_id , adopter_id, request_date, status },
+        adoptionRequests.update({ pet_id , adopter_id, request_date, status, name_pet, name_adopter, comments },
             { where: { id } }).then((resultado) => {
                 res.status(200).json({
                     tipo: 'success',

@@ -38,6 +38,18 @@ const adoptionRequests = db.define("adoption_requests", {
     type: Sequelize.ENUM('Pending', 'Approved', 'Rejected'),  // Restricción de valores permitidos
     allowNull: false,
     defaultValue: 'Pending'  // Valor por defecto
+  },
+  name_pet: {  
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+  name_adopter: {  
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+  comments: {  
+    type: Sequelize.STRING,
+    allowNull: true
   }
 }, {
   timestamps: false  // Deshabilita 'createdAt' y 'updatedAt'
