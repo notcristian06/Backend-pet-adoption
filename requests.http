@@ -17,6 +17,8 @@ Content-Type: application/json
     "species": "Perro",
     "breed": "Mestizo",
     "age": 7,
+    "gender": "Macho",
+    "size": "Grande",
     "description": "Color Blanco"
     
 }
@@ -30,6 +32,8 @@ Content-Type: application/json
     "species": "Gato",
     "breed": "Ruso",
     "age": 5,
+    "gender": "Hembra",
+    "size": "Pequeño",
     "description": "Color Gris"
     
 }

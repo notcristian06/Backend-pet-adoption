@@ -25,6 +25,14 @@ const pets = db.define("pets", {
     type: Sequelize.INTEGER,
     allowNull: true
   },
+  gender: {  
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+  size: {  
+    type: Sequelize.STRING,
+    allowNull: true
+  },
   description: {
     type: Sequelize.TEXT,
     allowNull: true

@@ -17,6 +17,8 @@ const crear = (req, res) => {
         species: req.body.species,
         breed: req.body.breed,
         age: req.body.age,
+        gender: req.body.gender,
+        size: req.body.size,
         description: req.body.description
 
     }
@@ -102,8 +104,10 @@ const actualizar = (req, res) => {
         const species = req.body.species;
         const breed = req.body.breed;
         const age = req.body.age;
+        const gender = req.body.gender;
+        const size = req.body.size;
         const description = req.body.description;
-        pets.update({ name, species, breed, age, description },
+        pets.update({ name, species, breed, age, gender, size, description },
             { where: { id } }).then((resultado) => {
             res.status(200).json({
                 tipo: 'success',
