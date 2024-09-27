@@ -1,13 +1,15 @@
 //--------------------------------------------------------------------------------------------------
 //Requests Pets
 
+
+//Requests Find
 GET http://127.0.0.1:4000/mascotas/buscar HTTP/1.1
 
-
+//Requests FindId
 ###
 GET http://127.0.0.1:4000/mascotas/buscarid/1 HTTP/1.1
 
-
+//Requests Create
 ###
 POST http://127.0.0.1:4000/mascotas/crear HTTP/1.1
 Content-Type: application/json
@@ -23,12 +25,13 @@ Content-Type: application/json
     
 }
 
+//Requests Update
 ###
 PUT http://127.0.0.1:4000/mascotas/actualizar/2 HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Toni",
+    "name": "Tini",
     "species": "Gato",
     "breed": "Ruso",
     "age": 5,
@@ -38,24 +41,25 @@ Content-Type: application/json
     
 }
 
+//Requests Delete
 ###
-DELETE http://127.0.0.1:4000/mascotas/borrar/2 HTTP/1.1
+DELETE http://127.0.0.1:4000/mascotas/borrar/1 HTTP/1.1
 
 
 
 //--------------------------------------------------------------------------------------------------
 //Requests Adopters
 
-
+//Requests Find
 ###
 GET http://127.0.0.1:4000/adoptantes/buscar HTTP/1.1
 
-
+//Requests FindId
 ###
 GET http://127.0.0.1:4000/adoptantes/buscarid/1 HTTP/1.1
 
 
-
+//Requests Create
 ###
 POST http://127.0.0.1:4000/adoptantes/crear HTTP/1.1
 Content-Type: application/json
@@ -71,6 +75,7 @@ Content-Type: application/json
     
 }
 
+//Requests Update
 ###
 PUT http://127.0.0.1:4000/adoptantes/actualizar/2 HTTP/1.1
 Content-Type: application/json
@@ -86,6 +91,7 @@ Content-Type: application/json
     
 }
 
+//Requests Delete
 ###
 DELETE http://127.0.0.1:4000/adoptantes/borrar/2 HTTP/1.1
 
@@ -93,15 +99,16 @@ DELETE http://127.0.0.1:4000/adoptantes/borrar/2 HTTP/1.1
 //--------------------------------------------------------------------------------------------------
 //Requests Adoption_requests
 
+//Requests Find
 ###
 GET http://127.0.0.1:4000/solicitudes/buscar HTTP/1.1
 
-
+//Requests FindId
 ###
 GET http://127.0.0.1:4000/solicitudes/buscarid/1 HTTP/1.1
 
 
-
+//Requests Create
 ###
 POST http://127.0.0.1:4000/solicitudes/crear HTTP/1.1
 Content-Type: application/json
@@ -115,8 +122,7 @@ Content-Type: application/json
 }
 
 
-
-
+//Requests Update
 ###
 PUT http://127.0.0.1:4000/solicitudes/actualizar/1 HTTP/1.1
 Content-Type: application/json
@@ -129,5 +135,6 @@ Content-Type: application/json
  
 }
 
+//Requests Delete
 ###
 DELETE http://127.0.0.1:4000/solicitudes/borrar/4 HTTP/1.1

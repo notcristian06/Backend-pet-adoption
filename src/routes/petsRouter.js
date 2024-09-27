@@ -4,7 +4,8 @@ import {crear,buscar,buscarID,actualizar,borrar} from "../drivers/petsController
 const routerPets = express.Router();
 
 routerPets.get('/', (req,res) =>{
-    res.send('Hola sitio de mascotas');
+    res.send('🦴 Módulo de Mascotas: Aquí gestionamos la información de las mascotas, incluyendo creación, búsqueda, actualización y eliminación de registros. ¡Ayúdanos a encontrarles un hogar!');
+
 })
 
 routerPets.post('/crear', (req,res) =>{

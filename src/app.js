@@ -20,7 +20,12 @@ db.authenticate().then(()=>{
 
 //Definir Rutas
 app.get('/', (req, res) => {
-    res.send('Hola Sitio Principal');
+    res.send(`
+        <h1>🌟 Bienvenido a Tail Tails Rescue 🌟</h1>
+        <p>Tu destino para encontrar a tu nuevo mejor amigo.</p>
+        <p>En Tail Tails Rescue, nos dedicamos a rescatar y reubicar mascotas necesitadas. Nuestro compromiso es encontrar hogares amorosos para todos los animales de todas las razas y edades. Cada uno de nuestros amigos peludos tiene una historia única y un corazón lleno de amor esperando ser compartido.</p>
+    `);
+    
 });
 
 //Llamar rutas de Mascotas

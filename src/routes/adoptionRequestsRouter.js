@@ -4,7 +4,8 @@ import { crear, buscar, buscarID, actualizar, borrar } from "../drivers/adoption
 const routerAdoptionRequests = express.Router();
 
 routerAdoptionRequests.get('/', (req, res) => {
-    res.send('Hola sitio de mascotas');
+    res.send('📋 Módulo de Solicitudes de Adopción: Aquí gestionamos todas las solicitudes de adopción, permitiendo crear, buscar, actualizar y eliminar registros para asegurar que cada mascota encuentre su hogar ideal.');
+
 })
 
 routerAdoptionRequests.post('/crear', (req, res) => {
