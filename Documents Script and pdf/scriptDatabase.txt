@@ -1,0 +1,37 @@
+-- Create the pets table
+CREATE TABLE pets (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name TEXT NOT NULL,
+    species TEXT NOT NULL,
+    breed TEXT,
+    age INT,
+    description TEXT,
+    gender TEXT,
+    size TEXT
+);
+
+-- Create the adopters table
+CREATE TABLE adopters (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    phone TEXT,
+    citizenship_card TEXT UNIQUE,
+    address TEXT,
+    city TEXT
+);
+
+-- Create the adoption_requests table
+CREATE TABLE adoption_requests (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    pet_id BIGINT,
+    adopter_id BIGINT,
+    request_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    status ENUM('Pending', 'Approved', 'Rejected') NOT NULL,
+    name_pet TEXT,
+    name_adopter TEXT,
+    comments TEXT,
+    FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE,
+    FOREIGN KEY (adopter_id) REFERENCES adopters(id) ON DELETE CASCADE
+);
